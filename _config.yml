@@ -5,6 +5,13 @@ baseurl: ""
 language: pt-BR
 markdown: kramdown
 permalink: pretty
+exclude:
+  - tests/
+  - node_modules/
+  - package-lock.json
+  - package.json
+  - playwright.config.js
+  - vitest.config.js
 
 collections:
   news:

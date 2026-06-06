@@ -2,71 +2,55 @@
   const input = document.getElementById("agenda-search");
   const status = document.getElementById("agenda-status");
   const list = document.getElementById("agenda-list");
+  const utils = window.SearchUtils;
+  let isFallbackMode = false;
 
-  if (!input || !status || !list) {
+  if (!input || !status || !list || !utils) {
     return;
   }
 
-  function normalize(text) {
-    return (text || "")
-      .toString()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-  }
-
-  function escapeHtml(text) {
-    return (text || "")
-      .toString()
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#39;");
-  }
-
-  function isValidSession(session) {
-    const required = ["id", "title", "speaker", "track", "startTime", "endTime", "room"];
-    return required.every((field) => typeof session[field] === "string" && session[field].trim().length > 0);
-  }
-
   function applyDomFilter(query) {
-    const term = normalize(query);
+    const term = utils.normalize(query);
     const cards = Array.from(list.querySelectorAll(".agenda-item"));
     let visible = 0;
 
     cards.forEach((card) => {
-      const text = normalize(card.getAttribute("data-search") || card.textContent);
+      const text = utils.normalize(card.getAttribute("data-search") || card.textContent);
       const show = text.includes(term);
       card.style.display = show ? "block" : "none";
       if (show) visible += 1;
     });
 
-    status.classList.remove("status-warning");
-    status.textContent = term
-      ? `${visible} resultado(s) encontrado(s).`
-      : `Mostrando ${visible} sessao(oes).`;
+    if (isFallbackMode) {
+      status.classList.add("status-warning");
+      status.textContent = term
+        ? `Agenda em modo fallback local. ${visible} resultado(s) encontrado(s).`
+        : `Agenda em modo fallback local. Mostrando ${visible} sessao(oes).`;
+    } else {
+      status.classList.remove("status-warning");
+      status.textContent = term
+        ? `${visible} resultado(s) encontrado(s).`
+        : `Mostrando ${visible} sessao(oes).`;
+    }
 
     if (term && visible === 0) {
-      status.textContent = "Nenhuma sessao encontrada para este termo.";
+      status.textContent = isFallbackMode
+        ? "Agenda em modo fallback local. Nenhuma sessao encontrada para este termo."
+        : "Nenhuma sessao encontrada para este termo.";
     }
   }
 
   function renderSessions(sessions, query) {
-    const term = normalize(query);
-    const filtered = term
-      ? sessions.filter((s) =>
-          normalize(`${s.title} ${s.speaker} ${s.track} ${s.start_time} ${s.room}`).includes(term)
-        )
-      : sessions;
+    const term = utils.normalize(query);
+    const filtered = utils.filterSessions(sessions, term);
 
     list.innerHTML = filtered
       .map(
         (s) => `
-        <article class="card agenda-item" data-search="${escapeHtml(s.title)} ${escapeHtml(s.speaker)} ${escapeHtml(s.track)} ${escapeHtml(s.startTime)} ${escapeHtml(s.room)}">
-          <p class="meta">${escapeHtml(s.startTime)} - ${escapeHtml(s.endTime)} • ${escapeHtml(s.track)}</p>
-          <h3>${escapeHtml(s.title)}</h3>
-          <p>${escapeHtml(s.speaker)} • ${escapeHtml(s.room)}</p>
+        <article class="card agenda-item" data-search="${utils.escapeHtml(s.title)} ${utils.escapeHtml(s.speaker)} ${utils.escapeHtml(s.track)} ${utils.escapeHtml(s.startTime)} ${utils.escapeHtml(s.room)}">
+          <p class="meta">${utils.escapeHtml(s.startTime)} - ${utils.escapeHtml(s.endTime)} • ${utils.escapeHtml(s.track)}</p>
+          <h3>${utils.escapeHtml(s.title)}</h3>
+          <p>${utils.escapeHtml(s.speaker)} • ${utils.escapeHtml(s.room)}</p>
         </article>
       `
       )
@@ -94,7 +78,7 @@
         throw new Error("Dataset de agenda invalido");
       }
 
-      const validSessions = sessions.filter(isValidSession);
+      const validSessions = sessions.filter(utils.isValidSession);
       if (validSessions.length === 0) {
         throw new Error("Dataset de agenda sem sessoes validas");
       }
@@ -105,6 +89,7 @@
       });
     })
     .catch(() => {
+      isFallbackMode = true;
       status.classList.add("status-warning");
       status.textContent = "Agenda em modo fallback local. Busca aplicada sobre a listagem inicial.";
       applyDomFilter("");
