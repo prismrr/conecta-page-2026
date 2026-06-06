@@ -203,14 +203,58 @@ h1 {
   color: var(--muted);
 }
 
+.status-warning {
+  color: var(--brand-orange);
+  font-weight: 600;
+}
+
 .location-card {
   display: grid;
   gap: 0.65rem;
 }
 
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.location-title {
+  margin: 0;
+  font-weight: 700;
+  color: var(--brand-cyan);
+}
+
+.location-checklist {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+.link-stack {
+  display: grid;
+  gap: 0.45rem;
+}
+
 .location-link {
   color: var(--brand-cyan);
   font-weight: 600;
+}
+
+.location-link.secondary {
+  color: var(--brand-green);
+}
+
+.signup-card {
+  background: linear-gradient(150deg, color-mix(in srgb, var(--surface) 82%, transparent), color-mix(in srgb, var(--brand-blue) 22%, var(--surface)));
+}
+
+.microcopy {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
 }
 
 .footer {

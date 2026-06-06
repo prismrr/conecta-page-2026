@@ -2,15 +2,15 @@
 layout: null
 ---
 [
-{% assign sessions = site.agenda | sort: "start_time" %}
+{% assign sessions = site.agenda | sort: "startTime" %}
 {% for s in sessions %}
   {
-    "id": {{ s.session_id | jsonify }},
+    "id": {{ s.id | jsonify }},
     "title": {{ s.title | jsonify }},
     "speaker": {{ s.speaker | jsonify }},
     "track": {{ s.track | jsonify }},
-    "start_time": {{ s.start_time | jsonify }},
-    "end_time": {{ s.end_time | jsonify }},
+    "startTime": {{ s.startTime | jsonify }},
+    "endTime": {{ s.endTime | jsonify }},
     "room": {{ s.room | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}

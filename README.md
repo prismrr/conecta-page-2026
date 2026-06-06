@@ -2,6 +2,51 @@
 
 Portal web do evento PRISM Conecta 2026, com foco em alta performance, acessibilidade e operação confiável em redes móveis limitadas.
 
+## Build da Aplicação
+
+### Pré-requisitos
+
+- Docker
+- Docker Compose
+
+### Executar em desenvolvimento (com live reload)
+
+1. Subir o servidor local:
+
+```bash
+docker compose up
+```
+
+2. Acessar a aplicação:
+
+```text
+http://localhost:4000
+```
+
+### Gerar build estático de produção
+
+```bash
+docker compose run --rm web sh -c 'bundle install && bundle exec jekyll build'
+```
+
+Saída gerada em:
+
+```text
+_site/
+```
+
+### Parar os containers
+
+```bash
+docker compose down
+```
+
+### Limpeza opcional de artefatos locais
+
+```bash
+rm -rf .jekyll-cache _site
+```
+
 ## Visão do Projeto
 
 O Conecta Hub centraliza as informações do evento em uma experiência de página única, priorizando:
@@ -32,7 +77,7 @@ Diretriz principal: oferecer informação crítica em até 3 cliques, mesmo em c
 
 - Arquitetura Jamstack (build time > runtime)
 - Geração de conteúdo estático com Jekyll
-- Front-end com HTML, CSS (Tailwind) e JavaScript
+- Front-end com HTML, CSS e JavaScript
 - Sem dependência de banco de dados em produção
 - Deploy em CDN estática para baixa latência e resiliência
 
@@ -90,4 +135,9 @@ Controles de segurança previstos:
 
 ## Status
 
-Repositório atualmente orientado por especificações técnicas e de produto. A implementação será guiada pelos documentos da pasta specs.
+Base funcional do MVP já iniciada com:
+
+- Estrutura Jekyll e Docker Compose
+- Landing page com seções de notícias, agenda, localização e inscrição
+- Busca client-side da agenda com fallback
+- Conteúdo editorial inicial em coleções

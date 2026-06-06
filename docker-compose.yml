@@ -1,7 +1,7 @@
 services:
   web:
     image: jekyll/jekyll:4.2.2
-    command: sh -c "bundle install && bundle exec jekyll serve --host 0.0.0.0 --livereload --force_polling"
+    command: sh -c "bundle install && ruby scripts/validate_agenda.rb && bundle exec jekyll serve --host 0.0.0.0 --livereload --force_polling"
     ports:
       - "4000:4000"
       - "35729:35729"
