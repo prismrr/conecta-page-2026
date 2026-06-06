@@ -1,0 +1,17 @@
+---
+layout: null
+---
+[
+{% assign sessions = site.agenda | sort: "start_time" %}
+{% for s in sessions %}
+  {
+    "id": {{ s.session_id | jsonify }},
+    "title": {{ s.title | jsonify }},
+    "speaker": {{ s.speaker | jsonify }},
+    "track": {{ s.track | jsonify }},
+    "start_time": {{ s.start_time | jsonify }},
+    "end_time": {{ s.end_time | jsonify }},
+    "room": {{ s.room | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
