@@ -226,6 +226,13 @@ h1 {
   margin-bottom: 0.35rem;
 }
 
+.agenda-date {
+  color: var(--brand-green);
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
 .search-wrap input {
   width: min(350px, 90vw);
   border-radius: 0.7rem;

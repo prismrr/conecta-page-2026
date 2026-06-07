@@ -9,6 +9,28 @@
     return;
   }
 
+  function formatAgendaDatePtBr(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+
+    const isoPrefix = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (isoPrefix) {
+      return `${isoPrefix[3]}/${isoPrefix[2]}/${isoPrefix[1]}`;
+    }
+
+    const brDate = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (brDate) {
+      return raw;
+    }
+
+    const parsed = new Date(raw);
+    if (!Number.isNaN(parsed.getTime())) {
+      return new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(parsed);
+    }
+
+    return raw;
+  }
+
   function applyDomFilter(query) {
     const term = utils.normalize(query);
     const cards = Array.from(list.querySelectorAll(".agenda-item"));
@@ -52,13 +74,17 @@
 
     list.innerHTML = filtered
       .map(
-        (s) => `
-        <article class="card agenda-item" data-search="${utils.escapeHtml(s.title)} ${utils.escapeHtml(s.speaker)} ${utils.escapeHtml(s.track)} ${utils.escapeHtml(s.date)} ${utils.escapeHtml(s.startTime)} ${utils.escapeHtml(s.room)}">
-          <p class="meta">${utils.escapeHtml(s.date)} • ${utils.escapeHtml(s.startTime)} - ${utils.escapeHtml(s.endTime)} • ${utils.escapeHtml(s.track)}</p>
+        (s) => {
+          const displayDate = formatAgendaDatePtBr(s.date);
+          return `
+        <article class="card agenda-item" data-search="${utils.escapeHtml(s.title)} ${utils.escapeHtml(s.speaker)} ${utils.escapeHtml(s.track)} ${utils.escapeHtml(displayDate)} ${utils.escapeHtml(s.startTime)} ${utils.escapeHtml(s.room)}">
+          <p class="agenda-date">Data: ${utils.escapeHtml(displayDate)}</p>
+          <p class="meta">${utils.escapeHtml(s.startTime)} - ${utils.escapeHtml(s.endTime)} • ${utils.escapeHtml(s.track)}</p>
           <h3>${utils.escapeHtml(s.title)}</h3>
           <p>${utils.escapeHtml(s.speaker)} • ${utils.escapeHtml(s.room)}</p>
         </article>
-      `
+      `;
+        }
       )
       .join("");
 

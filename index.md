@@ -61,7 +61,8 @@ layout: default
     {% assign sessions = site.agenda | sort: 'startTime' | sort: 'date' %}
     {% for s in sessions %}
       <article class="card agenda-item" data-search="{{ s.title }} {{ s.speaker }} {{ s.track }} {{ s.date }} {{ s.startTime }} {{ s.room }}">
-        <p class="meta">{{ s.date }} • {{ s.startTime }} - {{ s.endTime }} • {{ s.track }}</p>
+        <p class="agenda-date">Data: {{ s.date | date: "%d/%m/%Y" }}</p>
+        <p class="meta">{{ s.startTime }} - {{ s.endTime }} • {{ s.track }}</p>
         <h3>{{ s.title }}</h3>
         <p>{{ s.speaker }} • {{ s.room }}</p>
       </article>
