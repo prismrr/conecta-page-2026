@@ -16,6 +16,16 @@ test.describe("jornada principal", () => {
     const geoLink = page.locator("a[data-cta='localizacao-geo']");
     await expect(geoLink).toHaveAttribute("href", /geo:/);
 
+    const mapCard = page.locator("[data-cta='localizacao-mapa-cit']");
+    await expect(mapCard).toBeVisible();
+
+    const mapFrame = page.locator(".location-map-frame");
+    await expect(mapFrame).toBeVisible();
+    await expect(mapFrame).toHaveAttribute("src", /google\.com\/maps/);
+
+    const mapGeoLink = page.locator("a[data-cta='localizacao-geo-mapa']");
+    await expect(mapGeoLink).toHaveAttribute("href", /geo:/);
+
     const signup = page.locator("a[data-cta='secao-inscricao-principal']");
     await expect(signup).toHaveAttribute("target", "_blank");
     await expect(signup).toHaveAttribute("rel", /noopener/);

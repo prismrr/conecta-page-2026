@@ -84,6 +84,7 @@ layout: default
         <a href="geo:2.8366877066335463, -60.69144884937666?q=UFRR CIT" class="location-link" aria-label="Abrir localizacao no aplicativo de mapas do dispositivo" data-cta="localizacao-geo">Abrir no app de mapas</a>
         <a href="https://maps.google.com/?q=2.8366877066335463, -60.69144884937666" target="_blank" rel="noopener noreferrer" class="location-link secondary" aria-label="Abrir localizacao no Google Maps em nova aba" data-cta="localizacao-webmap">Abrir no navegador</a>
       </div>
+      
     </article>
 
     <article class="card location-card">
@@ -95,6 +96,27 @@ layout: default
       </ul>
     </article>
   </div>
+
+  <article class="card location-map-card" data-cta="localizacao-mapa-cit">
+    <p class="location-title">Mapa do CIT - Centro de Inovação e Tecnologia</p>
+    <p>Av. Nova Iorque, 48-188 - Aeroporto, Boa Vista - RR, 69310-010.</p>
+    <div class="location-map-frame-wrap">
+      <iframe
+        class="location-map-frame"
+        title="Mapa do CIT - Centro de Inovação e Tecnologia"
+        aria-label="Mapa interativo do CIT em Boa Vista"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Av.+Nova+Iorque,+48-188+-+Aeroporto,+Boa+Vista+-+RR,+69310-010&output=embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="microcopy">Se o mapa embutido nao carregar, use os links abaixo.</p>
+    <div class="link-stack">
+      <a href="geo:0,0?q=Av.+Nova+Iorque,+48-188+-+Aeroporto,+Boa+Vista+-+RR,+69310-010" class="location-link" aria-label="Abrir localizacao do CIT no aplicativo de mapas do dispositivo" data-cta="localizacao-geo-mapa">Abrir no app de mapas</a>
+      <a href="https://maps.google.com/?q=Av.+Nova+Iorque,+48-188+-+Aeroporto,+Boa+Vista+-+RR,+69310-010" target="_blank" rel="noopener noreferrer" class="location-link secondary" aria-label="Abrir localizacao do CIT no Google Maps em nova aba" data-cta="localizacao-webmap-mapa">Abrir no navegador</a>
+    </div>
+  </article>
 </section>
 
 <section id="inscricao" class="wrap section">
