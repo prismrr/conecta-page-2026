@@ -31,6 +31,8 @@ http://localhost:4000
 npm run build:site
 ```
 
+Esse comando executa a validacao de contrato da agenda (`scripts/validate_agenda.rb`) antes do build do Jekyll.
+
 Saída gerada em:
 
 ```text
