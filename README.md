@@ -47,6 +47,38 @@ docker compose down
 rm -rf .jekyll-cache _site
 ```
 
+## UAT e Go-Live
+
+### Executar readiness de release (gate unico)
+
+```bash
+npm run release:ready
+```
+
+Esse comando executa:
+
+1. testes unitarios
+2. testes de integracao
+3. testes E2E
+4. testes de acessibilidade
+5. checks de seguranca
+6. validacao de contrato da agenda
+7. build estatico final
+
+### Executar apenas UAT automatizado
+
+```bash
+npm run uat
+```
+
+### Artefatos operacionais
+
+- UAT checklist: ops/UAT_CHECKLIST.md
+- UAT signoff: ops/UAT_SIGNOFF_TEMPLATE.md
+- Go-live checklist: ops/GO_LIVE_CHECKLIST.md
+- Rollback plan: ops/ROLLBACK_PLAN.md
+- Event runbook: ops/EVENT_RUNBOOK.md
+
 ## Visão do Projeto
 
 O Conecta Hub centraliza as informações do evento em uma experiência de página única, priorizando:
