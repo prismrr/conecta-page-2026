@@ -65,7 +65,7 @@ Esse comando executa:
 2. testes de integracao
 3. testes E2E
 4. testes de acessibilidade
-5. checks de seguranca
+5. checks de seguranca (secret scan + npm audit + bundle-audit + links externos)
 6. validacao de contrato da agenda
 7. build estatico final
 

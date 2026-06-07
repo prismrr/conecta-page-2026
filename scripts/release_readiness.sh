@@ -15,8 +15,8 @@ npm run test:e2e
 echo "[release] 4/7 - Acessibilidade WCAG"
 npm run test:a11y
 
-echo "[release] 5/7 - Seguranca (critical + links externos)"
-npm run security:ci
+echo "[release] 5/7 - Seguranca completa (secret scan + npm + ruby + links)"
+npm run security:release
 
 echo "[release] 6/7 - Validacao de contrato da agenda"
 ruby scripts/validate_agenda.rb

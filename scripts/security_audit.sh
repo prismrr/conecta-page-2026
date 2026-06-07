@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+echo "[security] secret scan"
+bash scripts/secret_scan.sh
+
 echo "[security] npm audit (critical)"
 npm audit --audit-level=critical
 
