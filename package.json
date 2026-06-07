@@ -8,12 +8,15 @@
     "test:unit": "vitest run tests/unit",
     "test:integration": "vitest run tests/integration",
     "test:e2e": "playwright test tests/e2e/journey.spec.js",
-    "test:a11y": "playwright test tests/e2e/accessibility.spec.js"
+    "test:a11y": "playwright test tests/e2e/accessibility.spec.js",
+    "security:links": "ruby scripts/validate_external_links.rb",
+    "security:audit": "bash scripts/security_audit.sh",
+    "security:ci": "npm audit --audit-level=critical && ruby scripts/validate_external_links.rb"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.54.1",
     "http-server": "^14.1.1",
-    "vitest": "^2.0.5"
+    "vitest": "^4.1.8"
   }
 }

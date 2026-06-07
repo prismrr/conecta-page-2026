@@ -5,6 +5,8 @@ baseurl: ""
 language: pt-BR
 markdown: kramdown
 permalink: pretty
+include:
+  - _headers
 exclude:
   - tests/
   - node_modules/
