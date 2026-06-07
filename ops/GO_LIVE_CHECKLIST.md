@@ -12,10 +12,10 @@ Objetivo: garantir liberacao segura para producao com rollback preparado.
 
 ## Deploy
 
-1. Executar build estatico final
-2. Publicar artefatos em CDN/static host
-3. Confirmar publicacao de _headers no provider
-4. Validar HTTPS ativo
+1. Disparar workflow `Deploy Production` (manual) ou merge em `main`
+2. Confirmar execucao do gate `npm run go-live:ready`
+3. Confirmar publicacao do artefato `_site` no GitHub Pages
+4. Confirmar disponibilidade HTTPS da URL de producao
 5. Validar redirecionamento externo de inscricao
 
 ## Pos-deploy imediato (smoke)

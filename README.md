@@ -2,6 +2,22 @@
 
 Portal web do evento PRISM Conecta 2026, com foco em alta performance, acessibilidade e operação confiável em redes móveis limitadas.
 
+## Quick Deploy
+
+1. Atualize `ops/UAT_SIGNOFF.md` com `APROVADO PARA GO-LIVE` e assinaturas.
+2. Rode o gate final local:
+
+```bash
+npm run go-live:ready
+```
+
+3. Faça merge/push em `main` (ou dispare manualmente `Deploy Production`).
+4. Aguarde o workflow `.github/workflows/deploy-production.yml` concluir.
+5. Valide em produção:
+- Home carregando
+- `/healthz` retornando `ok`
+- Agenda, localização e CTA funcionando
+
 ## Build da Aplicação
 
 ### Pré-requisitos
@@ -141,6 +157,35 @@ Esse fluxo inclui smoke test do endpoint `/healthz`.
 - Security and Hardening: `.github/workflows/security.yml`
 - Release Readiness: `.github/workflows/release-readiness.yml`
 - Go-Live Gate: `.github/workflows/go-live-gate.yml`
+- Deploy Production (GitHub Pages): `.github/workflows/deploy-production.yml`
+
+## Deploy em Producao (GitHub Pages)
+
+### Configuracao inicial (uma vez)
+
+1. Em Settings > Pages do repositório, configurar Source como GitHub Actions.
+2. Garantir que a branch `main` esteja protegida conforme politica do time.
+3. Garantir que o arquivo de aceite formal (`ops/UAT_SIGNOFF.md`) esteja aprovado para go-live.
+
+### Publicacao
+
+1. Via merge/push em `main`:
+- O workflow `Deploy Production` e acionado automaticamente.
+
+2. Via execucao manual:
+- Acionar `workflow_dispatch` do workflow `Deploy Production`.
+
+### O que o deploy executa
+
+1. `npm run go-live:ready` (inclui readiness tecnico + validacao de aceite formal de UAT)
+2. Upload do artefato estatico `_site`
+3. Publicacao em GitHub Pages
+
+### Pos-deploy
+
+1. Validar disponibilidade da home
+2. Validar healthcheck em `/healthz`
+3. Validar agenda, localizacao e CTA de inscricao
 
 ## Visão do Projeto
 
