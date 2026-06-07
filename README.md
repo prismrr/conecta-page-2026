@@ -69,6 +69,28 @@ Esse comando executa:
 6. validacao de contrato da agenda
 7. build estatico final
 
+### Executar gate final de Go-Live (inclui aceite formal UAT)
+
+```bash
+npm run go-live:ready
+```
+
+Esse comando exige signoff formal aprovado em `ops/UAT_SIGNOFF.md`.
+
+### Aceite formal de UAT (passo humano obrigatorio)
+
+Antes do `npm run go-live:ready`, atualize `ops/UAT_SIGNOFF.md` com:
+
+1. Decisao: `APROVADO PARA GO-LIVE`
+2. Assinatura de Produto/Coordenacao sem status pendente
+3. Assinatura de Engenharia sem status pendente
+
+Validar manualmente o signoff:
+
+```bash
+npm run uat:signoff:check
+```
+
 ### Executar apenas UAT automatizado
 
 ```bash
@@ -91,9 +113,16 @@ npm run security:audit
 
 - UAT checklist: ops/UAT_CHECKLIST.md
 - UAT signoff: ops/UAT_SIGNOFF_TEMPLATE.md
+- UAT signoff materializado: ops/UAT_SIGNOFF.md
 - Go-live checklist: ops/GO_LIVE_CHECKLIST.md
 - Rollback plan: ops/ROLLBACK_PLAN.md
 - Event runbook: ops/EVENT_RUNBOOK.md
+
+### Workflows de CI/CD
+
+- Security and Hardening: `.github/workflows/security.yml`
+- Release Readiness: `.github/workflows/release-readiness.yml`
+- Go-Live Gate: `.github/workflows/go-live-gate.yml`
 
 ## Visão do Projeto
 
