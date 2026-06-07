@@ -8,6 +8,8 @@ Portal web do evento PRISM Conecta 2026, com foco em alta performance, acessibil
 
 - Docker
 - Docker Compose
+- Node.js 20+
+- npm
 
 ### Executar em desenvolvimento (com live reload)
 
@@ -26,7 +28,7 @@ http://localhost:4000
 ### Gerar build estático de produção
 
 ```bash
-docker compose run --rm web sh -c 'bundle install && bundle exec jekyll build'
+npm run build:site
 ```
 
 Saída gerada em:
@@ -44,7 +46,7 @@ docker compose down
 ### Limpeza opcional de artefatos locais
 
 ```bash
-rm -rf .jekyll-cache _site
+rm -rf .jekyll-cache _site node_modules test-results playwright-report
 ```
 
 ## UAT e Go-Live
@@ -69,6 +71,18 @@ Esse comando executa:
 
 ```bash
 npm run uat
+```
+
+### Executar baseline de segurança
+
+```bash
+npm run security:ci
+```
+
+### Executar auditoria completa de segurança
+
+```bash
+npm run security:audit
 ```
 
 ### Artefatos operacionais
@@ -167,9 +181,12 @@ Controles de segurança previstos:
 
 ## Status
 
-Base funcional do MVP já iniciada com:
+MVP implementado ate Sprint 6 com:
 
 - Estrutura Jekyll e Docker Compose
 - Landing page com seções de notícias, agenda, localização e inscrição
 - Busca client-side da agenda com fallback
 - Conteúdo editorial inicial em coleções
+- Suite de qualidade (unit, integração, E2E e acessibilidade)
+- Baseline de segurança (secret scan, auditoria de dependências, hardening de headers)
+- Artefatos operacionais de UAT e Go-Live (checklists, rollback e runbook)
