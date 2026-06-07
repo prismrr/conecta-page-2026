@@ -9,6 +9,19 @@ Objetivo: orientar atualizacoes rapidas de conteudo durante os dias do evento.
 3. Atualizar arquivos em _news e _agenda
 4. Executar validacoes antes de publicar
 
+## Monitoramento tecnico basico (producao)
+
+1. Telemetria client-side ativa em `assets/js/monitoring.js`
+2. Eventos de monitoramento:
+	- `app_boot`
+	- `js_error`
+	- `promise_rejection`
+	- `web_vitals` (LCP/FCP/CLS)
+	- `theme_init` e `theme_toggle`
+	- `agenda_loaded`, `agenda_search` e `agenda_fallback`
+3. Endpoint de healthcheck estatico: `/healthz`
+4. Smoke de disponibilidade: validar HTTP 200 em `/healthz` no pos-deploy
+
 ## Comandos operacionais
 
 1. Validar agenda e links externos:
@@ -28,6 +41,12 @@ npm run build:site
 
 ```bash
 bash scripts/release_readiness.sh
+```
+
+4. Verificacao de healthcheck em ambiente publicado:
+
+```bash
+curl -fsSL https://SEU_DOMINIO/healthz
 ```
 
 ## SLA operacional recomendado

@@ -27,6 +27,11 @@
     const theme = getInitialTheme(saved, prefersDark);
     applyTheme(theme, doc);
 
+    global.Monitoring?.send("theme_init", {
+      theme,
+      source: saved ? "storage" : "default",
+    });
+
     return { theme };
   }
 
@@ -41,6 +46,7 @@
       const next = current === "dark" ? "light" : "dark";
       applyTheme(next, doc);
       storage.setItem(STORAGE_KEY, next);
+      global.Monitoring?.send("theme_toggle", { from: current, to: next });
     });
   }
 

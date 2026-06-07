@@ -38,6 +38,12 @@
         ? "Agenda em modo fallback local. Nenhuma sessao encontrada para este termo."
         : "Nenhuma sessao encontrada para este termo.";
     }
+
+    window.Monitoring?.send("agenda_search", {
+      mode: isFallbackMode ? "fallback" : "primary",
+      queryLength: term.length,
+      results: visible,
+    });
   }
 
   function renderSessions(sessions, query) {
@@ -64,6 +70,12 @@
     if (term && filtered.length === 0) {
       status.textContent = "Nenhuma sessao encontrada para este termo.";
     }
+
+    window.Monitoring?.send("agenda_search", {
+      mode: "primary",
+      queryLength: term.length,
+      results: filtered.length,
+    });
   }
 
   fetch("/assets/data/agenda.json", { headers: { Accept: "application/json" } })
@@ -83,15 +95,23 @@
         throw new Error("Dataset de agenda sem sessoes validas");
       }
 
+      window.Monitoring?.send("agenda_loaded", {
+        source: "dataset",
+        sessions: validSessions.length,
+      });
+
       renderSessions(validSessions, "");
       input.addEventListener("input", (event) => {
         renderSessions(validSessions, event.target.value);
       });
     })
-    .catch(() => {
+    .catch((error) => {
       isFallbackMode = true;
       status.classList.add("status-warning");
       status.textContent = "Agenda em modo fallback local. Busca aplicada sobre a listagem inicial.";
+      window.Monitoring?.send("agenda_fallback", {
+        reason: String(error?.message || "unknown"),
+      });
       applyDomFilter("");
       input.addEventListener("input", (event) => {
         applyDomFilter(event.target.value);

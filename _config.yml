@@ -7,6 +7,7 @@ markdown: kramdown
 permalink: pretty
 include:
   - _headers
+  - healthz
 exclude:
   - tests/
   - node_modules/

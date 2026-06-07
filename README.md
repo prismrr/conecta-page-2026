@@ -118,6 +118,24 @@ npm run security:audit
 - Rollback plan: ops/ROLLBACK_PLAN.md
 - Event runbook: ops/EVENT_RUNBOOK.md
 
+## Monitoramento Basico em Producao
+
+Implementacao tecnica aplicada no front-end:
+
+- Telemetria client-side em `assets/js/monitoring.js`
+- Captura de erros globais (`error` e `unhandledrejection`)
+- Captura de Web Vitals basicos (LCP, FCP, CLS)
+- Eventos de jornada (tema e agenda)
+- Endpoint estatico de healthcheck em `/healthz`
+
+Validacao automatizada de disponibilidade:
+
+```bash
+npm run test:integration
+```
+
+Esse fluxo inclui smoke test do endpoint `/healthz`.
+
 ### Workflows de CI/CD
 
 - Security and Hardening: `.github/workflows/security.yml`
