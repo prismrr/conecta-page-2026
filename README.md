@@ -49,6 +49,17 @@ npm run build:site
 
 Esse comando executa a validacao de contrato da agenda (`scripts/validate_agenda.rb`) antes do build do Jekyll.
 
+Campos obrigatorios no front matter da agenda:
+
+- `id`
+- `title`
+- `speaker`
+- `track`
+- `date` (formato `DD/MM/AAAA`)
+- `startTime` (formato `HH:MM`)
+- `endTime` (formato `HH:MM`)
+- `room`
+
 Saída gerada em:
 
 ```text

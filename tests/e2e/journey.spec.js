@@ -5,10 +5,11 @@ test.describe("jornada principal", () => {
     await page.goto("/");
 
     await expect(page.getByRole("heading", { name: "Agenda" })).toBeVisible();
+    await expect(page.locator("#agenda-status")).toContainText("Mostrando");
 
     const input = page.locator("#agenda-search");
-    await input.fill("amazônia");
-    await expect(page.locator("#agenda-list .agenda-item")).toHaveCount(1);
+    await input.fill("git");
+    await expect(page.locator("#agenda-list .agenda-item:visible")).toHaveCount(1);
 
     await expect(page.locator("#agenda-status")).toContainText("resultado");
 
@@ -28,7 +29,7 @@ test.describe("jornada principal", () => {
     await page.goto("/");
 
     await expect(page.locator("#agenda-status")).toContainText("fallback");
-    await page.locator("#agenda-search").fill("jamstack");
+    await page.locator("#agenda-search").fill("git");
     await expect(page.locator("#agenda-list .agenda-item:visible")).toHaveCount(1);
   });
 });

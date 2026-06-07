@@ -2,13 +2,14 @@
 layout: null
 ---
 [
-{% assign sessions = site.agenda | sort: "startTime" %}
+{% assign sessions = site.agenda | sort: "startTime" | sort: "date" %}
 {% for s in sessions %}
   {
     "id": {{ s.id | jsonify }},
     "title": {{ s.title | jsonify }},
     "speaker": {{ s.speaker | jsonify }},
     "track": {{ s.track | jsonify }},
+    "date": {{ s.date | jsonify }},
     "startTime": {{ s.startTime | jsonify }},
     "endTime": {{ s.endTime | jsonify }},
     "room": {{ s.room | jsonify }}

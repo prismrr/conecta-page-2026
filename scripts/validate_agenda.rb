@@ -4,8 +4,9 @@
 require "yaml"
 
 AGENDA_DIR = File.expand_path("../_agenda", __dir__)
-REQUIRED_FIELDS = %w[id title speaker track startTime endTime room].freeze
+REQUIRED_FIELDS = %w[id title speaker track date startTime endTime room].freeze
 TIME_REGEX = /^([01]\d|2[0-3]):([0-5]\d)$/.freeze
+DATE_REGEX = /^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.freeze
 
 front_matter_errors = []
 seen_ids = {}
@@ -19,7 +20,13 @@ Dir.glob(File.join(AGENDA_DIR, "*.md")).sort.each do |path|
     next
   end
 
-  data = YAML.safe_load(match[1], permitted_classes: [], aliases: false)
+  begin
+    data = YAML.safe_load(match[1], permitted_classes: [], aliases: false)
+  rescue Psych::SyntaxError => e
+    front_matter_errors << "#{File.basename(path)}: YAML invalido (#{e.message})"
+    next
+  end
+
   unless data.is_a?(Hash)
     front_matter_errors << "#{File.basename(path)}: front matter nao e um mapa YAML"
     next
@@ -39,6 +46,11 @@ Dir.glob(File.join(AGENDA_DIR, "*.md")).sort.each do |path|
     unless value.match?(TIME_REGEX)
       front_matter_errors << "#{File.basename(path)}: campo '#{field}' deve estar no formato HH:MM"
     end
+  end
+
+  event_date = data["date"]
+  if event_date.is_a?(String) && !event_date.match?(DATE_REGEX)
+    front_matter_errors << "#{File.basename(path)}: campo 'date' deve estar no formato DD/MM/AAAA"
   end
 
   id = data["id"]

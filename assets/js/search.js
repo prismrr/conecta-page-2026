@@ -48,13 +48,13 @@
 
   function renderSessions(sessions, query) {
     const term = utils.normalize(query);
-    const filtered = utils.filterSessions(sessions, term);
+    const filtered = utils.sortSessions(utils.filterSessions(sessions, term));
 
     list.innerHTML = filtered
       .map(
         (s) => `
-        <article class="card agenda-item" data-search="${utils.escapeHtml(s.title)} ${utils.escapeHtml(s.speaker)} ${utils.escapeHtml(s.track)} ${utils.escapeHtml(s.startTime)} ${utils.escapeHtml(s.room)}">
-          <p class="meta">${utils.escapeHtml(s.startTime)} - ${utils.escapeHtml(s.endTime)} • ${utils.escapeHtml(s.track)}</p>
+        <article class="card agenda-item" data-search="${utils.escapeHtml(s.title)} ${utils.escapeHtml(s.speaker)} ${utils.escapeHtml(s.track)} ${utils.escapeHtml(s.date)} ${utils.escapeHtml(s.startTime)} ${utils.escapeHtml(s.room)}">
+          <p class="meta">${utils.escapeHtml(s.date)} • ${utils.escapeHtml(s.startTime)} - ${utils.escapeHtml(s.endTime)} • ${utils.escapeHtml(s.track)}</p>
           <h3>${utils.escapeHtml(s.title)}</h3>
           <p>${utils.escapeHtml(s.speaker)} • ${utils.escapeHtml(s.room)}</p>
         </article>
@@ -90,7 +90,7 @@
         throw new Error("Dataset de agenda invalido");
       }
 
-      const validSessions = sessions.filter(utils.isValidSession);
+      const validSessions = utils.sortSessions(sessions.filter(utils.isValidSession));
       if (validSessions.length === 0) {
         throw new Error("Dataset de agenda sem sessoes validas");
       }

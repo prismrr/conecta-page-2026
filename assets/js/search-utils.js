@@ -18,8 +18,13 @@
   }
 
   function isValidSession(session) {
-    const required = ["id", "title", "speaker", "track", "startTime", "endTime", "room"];
-    return required.every((field) => typeof session[field] === "string" && session[field].trim().length > 0);
+    const required = ["id", "title", "speaker", "track", "date", "startTime", "endTime", "room"];
+    const hasAllFields = required.every(
+      (field) => typeof session[field] === "string" && session[field].trim().length > 0
+    );
+    if (!hasAllFields) return false;
+
+    return /^([0-2]\d|3[01])\/(0\d|1[0-2])\/\d{4}$/.test(session.date);
   }
 
   function filterSessions(sessions, query) {
@@ -27,8 +32,20 @@
     if (!term) return sessions;
 
     return sessions.filter((s) =>
-      normalize(`${s.title} ${s.speaker} ${s.track} ${s.startTime} ${s.room}`).includes(term)
+      normalize(`${s.title} ${s.speaker} ${s.track} ${s.date} ${s.startTime} ${s.room}`).includes(term)
     );
+  }
+
+  function parseDateTimeBr(dateBr, time) {
+    const [day, month, year] = String(dateBr || "").split("/");
+    if (!day || !month || !year) return Number.POSITIVE_INFINITY;
+
+    const [hours = "00", minutes = "00"] = String(time || "").split(":");
+    return Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hours), Number(minutes), 0, 0);
+  }
+
+  function sortSessions(sessions) {
+    return [...sessions].sort((a, b) => parseDateTimeBr(a.date, a.startTime) - parseDateTimeBr(b.date, b.startTime));
   }
 
   const api = {
@@ -36,6 +53,7 @@
     escapeHtml,
     isValidSession,
     filterSessions,
+    sortSessions,
   };
 
   global.SearchUtils = api;
