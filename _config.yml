@@ -3,6 +3,7 @@ email: contato@prism.example
 url: ""
 baseurl: ""
 language: pt-BR
+google_analytics_measurement_id: ""
 markdown: kramdown
 permalink: pretty
 include:

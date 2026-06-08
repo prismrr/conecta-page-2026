@@ -1,5 +1,6 @@
 (function (global) {
   const endpoint = "/telemetry";
+  let gaInitialized = false;
 
   function now() {
     try {
@@ -19,9 +20,68 @@
     };
   }
 
-  function send(event, data) {
-    const body = JSON.stringify(payload(event, data));
+  function getGaMeasurementId() {
+    const content = global.document
+      ?.querySelector("meta[name='ga4-measurement-id']")
+      ?.getAttribute("content");
+    return (content || "").trim();
+  }
 
+  function ensureGaInitialized() {
+    if (gaInitialized) return true;
+
+    const measurementId = getGaMeasurementId();
+    if (!measurementId) return false;
+
+    global.dataLayer = global.dataLayer || [];
+
+    if (typeof global.gtag !== "function") {
+      global.gtag = function gtag() {
+        global.dataLayer.push(arguments);
+      };
+    }
+
+    global.gtag("js", new Date());
+    global.gtag("config", measurementId, {
+      send_page_view: true,
+      anonymize_ip: true,
+    });
+
+    gaInitialized = true;
+    return true;
+  }
+
+  function sanitizeEventParams(data, telemetryPayload) {
+    const safe = {
+      page_path: telemetryPayload.page,
+      user_agent: telemetryPayload.ua,
+    };
+
+    const source = data && typeof data === "object" ? data : {};
+    for (const [key, value] of Object.entries(source)) {
+      if (value == null) continue;
+      if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+        safe[key] = value;
+      } else {
+        safe[key] = JSON.stringify(value);
+      }
+    }
+
+    return safe;
+  }
+
+  function sendToGa(event, data, telemetryPayload) {
+    if (!ensureGaInitialized()) return;
+    if (typeof global.gtag !== "function") return;
+
+    try {
+      global.gtag("event", event, sanitizeEventParams(data, telemetryPayload));
+    } catch {
+      // GA4 should never break UX flow.
+    }
+  }
+
+  function sendToLocal(body) {
     try {
       if (global.navigator?.sendBeacon) {
         const blob = new Blob([body], { type: "application/json" });
@@ -42,6 +102,14 @@
         // Telemetry should never break UX flow.
       });
     }
+  }
+
+  function send(event, data) {
+    const telemetryPayload = payload(event, data);
+    const body = JSON.stringify(telemetryPayload);
+
+    sendToGa(event, data, telemetryPayload);
+    sendToLocal(body);
   }
 
   function setupErrorMonitoring() {
@@ -127,6 +195,7 @@
   }
 
   function init() {
+    ensureGaInitialized();
     setupBasicAvailabilityPing();
     setupErrorMonitoring();
     setupVitalsMonitoring();

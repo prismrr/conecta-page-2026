@@ -150,10 +150,18 @@ npm run security:audit
 Implementacao tecnica aplicada no front-end:
 
 - Telemetria client-side em `assets/js/monitoring.js`
+- Coletor externo Google Analytics 4 (GA4) quando `google_analytics_measurement_id` estiver configurado em `_config.yml`
+- Fallback de resiliencia para envio local em `/telemetry`
 - Captura de erros globais (`error` e `unhandledrejection`)
 - Captura de Web Vitals basicos (LCP, FCP, CLS)
 - Eventos de jornada (tema e agenda)
 - Endpoint estatico de healthcheck em `/healthz`
+
+Configuracao minima de GA4:
+
+1. Defina `google_analytics_measurement_id` em `_config.yml` com seu ID (ex.: `G-XXXXXXXXXX`).
+2. Rode o build normalmente (`npm run build:site`).
+3. Em ambiente sem ID configurado, o site continua operando com fallback local de telemetria.
 
 Validacao automatizada de disponibilidade:
 

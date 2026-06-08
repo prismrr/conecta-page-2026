@@ -16,12 +16,17 @@ Este documento descreve os controles de seguranca aplicados no MVP do PRISM Cone
 - Arquivo de headers: _headers
 - Politicas: CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, COOP
 - Meta policies defensivas no layout base: _layouts/default.html
+- CSP com dominios de telemetria externa controlados para GA4 no `connect-src`
 
 4. Validacao de links externos:
 - Script: scripts/validate_external_links.rb
 - Regras:
   - links externos devem usar target="_blank"
   - links externos devem conter rel com noopener noreferrer
+
+5. Telemetria observavel com fallback:
+- Coletor principal: Google Analytics 4 (GA4), quando `google_analytics_measurement_id` estiver configurado.
+- Resiliencia: fallback para `/telemetry` no front-end para evitar perda total de sinal em caso de bloqueio externo.
 
 ## Como executar localmente
 
