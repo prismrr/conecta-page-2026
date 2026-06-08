@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">PRISM Conecta Favicon</title>
+  <desc id="desc">Icone quadrado com gradiente azul e iniciais PC</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#23bcc7" />
+      <stop offset="100%" stop-color="#356ac3" />
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bg)" />
+  <path d="M19 20h14c6 0 10 4 10 10s-4 10-10 10h-7v10h-7V20zm13 14c2.7 0 4.3-1.5 4.3-4S34.7 26 32 26h-6v8h6z" fill="#041520"/>
+  <path d="M47 22h-7c-3.9 0-6.5 2.4-6.5 6s2.2 4.9 5.1 5.8l3.1 1c1.8.6 2.6 1.3 2.6 2.6 0 1.8-1.4 3-3.6 3-2.5 0-4.2-1.3-4.8-3.6l-6.4 2.5c1.4 4.5 5 7.1 11.1 7.1 6.5 0 10.9-3.4 10.9-8.9 0-4-2.4-6.5-7-8l-3.1-1c-1.4-.4-2-.9-2-1.9 0-1.2 1-2.1 2.5-2.1h5.1V22z" fill="#f8fafc" opacity="0.95"/>
+</svg>
