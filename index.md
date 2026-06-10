@@ -5,7 +5,10 @@ layout: default
 
 <section id="inicio" class="hero wrap">
   <p class="pill">Boa Vista - RR • Conecta 2026</p>
-  <h1>O centro de informações do evento PRISM Conecta</h1>
+  <div class="prism-conecta-hero">
+    <h1 class="main-title">O centro de informações do evento PRISM Conecta</h1>
+    <img class="logo-image" src="assets/img/logo2-v2.svg" alt="Logotipo do PRISM Conecta">
+  </div>
 
   <div class="grid news-grid">
     <article class="card location-card">  
