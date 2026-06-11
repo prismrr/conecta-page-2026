@@ -385,3 +385,183 @@ h1 {
   height: auto;
   display: block;
 }
+
+/* =====================
+   Privacy Modal
+   ===================== */
+.privacy-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.privacy-overlay[hidden] {
+  display: none;
+}
+
+.privacy-modal {
+  background: #0c1535;
+  border: 1px solid #1e3a6e;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65);
+  color: #e2e8f0;
+}
+
+.privacy-modal-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+}
+
+.privacy-modal-desc {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+}
+
+.privacy-options {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 1.75rem;
+}
+
+.privacy-option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  user-select: none;
+}
+
+.privacy-option-label input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: #356ac3;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.privacy-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.privacy-btn-reject {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 0.7rem;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.875rem;
+  font-family: "Sora", "Space Grotesk", sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.privacy-btn-reject:hover {
+  background: #e2e8f0;
+}
+
+.privacy-btn-reject:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 2px;
+}
+
+.privacy-btn-accept {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 0.7rem;
+  border: 2px solid #0b1120;
+  background: #356ac3;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: "Sora", "Space Grotesk", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #0b1120;
+  transition: box-shadow 0.1s, transform 0.1s;
+}
+
+.privacy-btn-accept:hover {
+  background: #4278d4;
+}
+
+.privacy-btn-accept:active {
+  box-shadow: 0 1px 0 #0b1120;
+  transform: translateY(3px);
+}
+
+.privacy-btn-accept:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 2px;
+}
+
+/* Floating gear button */
+.privacy-floating-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 199;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.55rem;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: box-shadow 0.2s, color 0.2s;
+}
+
+.privacy-floating-btn:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  color: #356ac3;
+}
+
+.privacy-floating-btn:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 2px;
+}
+
+/* Map placeholder states */
+.map-placeholder-pending,
+.map-placeholder-blocked {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.map-placeholder-pending p,
+.map-placeholder-blocked p {
+  margin: 0.25rem 0;
+}
+
+@media (max-width: 480px) {
+  .privacy-modal {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .privacy-actions {
+    flex-direction: column;
+  }
+}
