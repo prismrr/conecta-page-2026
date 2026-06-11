@@ -10,3 +10,23 @@ test("acessibilidade baseline WCAG", async ({ page }) => {
 
   expect(report.violations).toEqual([]);
 });
+
+test("acessibilidade WCAG — política de privacidade", async ({ page }) => {
+  await page.goto("/politica-privacidade/");
+
+  const report = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa"])
+    .analyze();
+
+  expect(report.violations).toEqual([]);
+});
+
+test("acessibilidade WCAG — termos de uso", async ({ page }) => {
+  await page.goto("/termos-uso/");
+
+  const report = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa"])
+    .analyze();
+
+  expect(report.violations).toEqual([]);
+});
