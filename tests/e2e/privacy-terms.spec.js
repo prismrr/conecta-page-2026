@@ -49,6 +49,13 @@ test.describe("footer com links de privacidade", () => {
 
   test("link de termos navega para a página de termos a partir do footer", async ({ page }) => {
     await page.goto("/");
+    // Dismiss the LGPD consent modal if it is visible before clicking the footer link
+    const modal = page.locator("#privacy-modal-overlay");
+    const isVisible = await modal.isVisible();
+    if (isVisible) {
+      await page.locator("#reject-all-btn").click();
+      await expect(modal).toBeHidden();
+    }
     await page.locator("footer a[href='/termos-uso/']").click();
     await expect(page.getByRole("heading", { name: "Termos de Uso" })).toBeVisible();
   });
