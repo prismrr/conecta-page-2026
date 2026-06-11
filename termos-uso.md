@@ -29,7 +29,7 @@ Ao acessar o Site pela primeira vez, será apresentado um painel de preferência
 - Aceitar ou rejeitar o uso do Google Analytics 4 para análise de tráfego
 - Aceitar ou rejeitar o carregamento do Google Maps para funcionalidades de localização
 
-Suas preferências são salvas localmente e podem ser alteradas a qualquer momento pelo botão de preferências de privacidade (ícone ⚙️) disponível em todas as páginas. Para detalhes sobre os dados coletados, consulte a [Política de Privacidade](/politica-privacidade/).
+Suas preferências são salvas localmente e podem ser alteradas a qualquer momento pelo botão de preferências de privacidade (ícone de engrenagem) disponível em todas as páginas. Para detalhes sobre os dados coletados, consulte a [Política de Privacidade](/politica-privacidade/).
 
 ---
 
@@ -61,7 +61,7 @@ O conteúdo deste Site — textos, imagens, logotipos e código-fonte — é pro
 
 ## 6. Links para Sites Externos
 
-Este Site pode conter links para sites externos. Esses links são fornecidos apenas para conveniência. O Site não é responsável pelo conteúdo ou práticas de privacidade de quaisquer sites de terceiros. Todos os links externos utilizam `rel="noopener noreferrer"` para sua segurança.
+Este Site pode conter links para sites externos. Esses links são fornecidos apenas para conveniência. O Site não é responsável pelo conteúdo ou práticas de privacidade de quaisquer sites de terceiros. Todos os links externos neste Site utilizam `rel="noopener noreferrer"` para sua segurança.
 
 ---
 

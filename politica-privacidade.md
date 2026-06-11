@@ -22,7 +22,7 @@ Armazenamos suas preferências de consentimento de privacidade no `localStorage`
 
 ### b) Análise de Tráfego e Melhoria da Experiência (Google Analytics 4)
 
-**Condicionado ao seu consentimento explícito.** Caso você consinta, utilizamos o Google Analytics 4 (GA4) para compreender como os visitantes interagem com o Site. Os dados coletados incluem:
+**Condicionado ao seu consentimento explícito.** Caso você consinta, utilizamos o Google Analytics 4 (GA4) para compreender como os visitantes interagem com o Site. O script do GA4, quando ativado, é inicializado com `analytics_storage: 'denied'` via **Google Consent Mode v2** — dados só são coletados após sua confirmação explícita. Os dados coletados incluem:
 
 - Identificadores de dispositivo e navegador (IDs anônimos gerados pelo GA4)
 - Páginas visitadas e tempo de permanência
@@ -85,7 +85,7 @@ Conforme a LGPD, você tem os seguintes direitos em relação aos seus dados pes
 
 ### Como revogar seu consentimento
 
-Você pode gerenciar ou revogar seus consentimentos a qualquer momento pelo **botão de preferências de privacidade** (ícone ⚙️) disponível em todas as páginas do Site. Ao revogar:
+Você pode gerenciar ou revogar seus consentimentos a qualquer momento pelo **botão de preferências de privacidade** (ícone de engrenagem) disponível em todas as páginas do Site. Ao revogar:
 
 1. As preferências salvas no `localStorage` são atualizadas imediatamente.
 2. O Google Analytics deixa de registrar novos eventos na sessão atual.
@@ -98,7 +98,7 @@ Para exercer os demais direitos previstos no Art. 18, entre em contato: **privac
 ## 6. Retenção de Dados
 
 - **Preferências de consentimento (localStorage):** armazenadas localmente até revogação ou limpeza manual do navegador. Sem expiração automática.
-- **Google Analytics 4:** retidos conforme a política de retenção do GA4 (padrão: 14 meses para dados de usuário e evento).
+- **Google Analytics 4:** retidos diretamente pelo Google conforme a política de retenção configurada na conta GA4 e descrita na [Política de Privacidade do Google](https://policies.google.com/privacy){:target="_blank" rel="noopener noreferrer"}.
 - **Google Maps:** não retidos pelo Site; processados diretamente pelo Google conforme sua política de privacidade.
 
 ---
