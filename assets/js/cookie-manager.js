@@ -67,18 +67,7 @@ const analyticsChecked = document.getElementById('analytics-consent').checked;
 const functionalChecked = document.getElementById('functional-consent').checked;
 setConsent(analyticsChecked, functionalChecked);
 });
-// Listener Genérico para mudanças de checkbox (para garantir persistência ao mudar uma opção)
-document.querySelectorAll('.option-label input[type="checkbox"]').forEach(checkbox => {
-checkbox.addEventListener('change', () => {
-const analyticsChecked = document.getElementById('analytics-consent').checked;
-const functionalChecked = document.getElementById('functional-consent').checked;
-// Avisar o usuário que precisa confirmar após mudar um checkbox, ou reprocessar
-// Para simplificar o exemplo, vamos forçar um "re-submit" na mudança de qualquer checkbox
-if (window.confirm("Mudou uma opção. Clique em 'Aceitar Tudo' ou 'Rejeitar Selecionados' para aplicar.")) {
-setConsent(analyticsChecked, functionalChecked);
-}
-});
-});
+
 // Toggle Flutuante (Para reabrir o banner de gerenciamento)
 toggleBtn?.addEventListener('click', () => {
 if (banner.style.display === 'none') {
