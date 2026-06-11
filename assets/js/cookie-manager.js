@@ -44,10 +44,7 @@ const renderGoogleMaps = (isFunctionalGranted) => {
 const mapContainer = document.getElementById('map-placeholder-parent');
 if (!mapContainer) return;
 if (isFunctionalGranted) {
-// Ação: Injetar o script/iframe real do Google Maps aqui.
-console.log("[Privacy] Rendering Google Maps component.");
-// Exemplo: Aqui deve ser executada a lógica de inicialização da API do Maps
-mapContainer.innerHTML = '<div id="google-map-widget">/* Conteúdo do Mapa Injetado Aqui */</div>';
+mapContainer.innerHTML = '<iframe class="location-map-frame" title="Mapa do CIT - Centro de Inovação e Tecnologia" aria-label="Mapa interativo do CIT em Boa Vista" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Av.+Nova+Iorque,+48-188+-+Aeroporto,+Boa+Vista+-+RR,+69310-010&output=embed" allowfullscreen></iframe>';
 } else {
 // Ação: Exibir Placeholder de Privacidade
 console.log("[Privacy] Map service blocked by user consent.");
@@ -86,8 +83,11 @@ setConsent(analyticsChecked, functionalChecked);
 toggleBtn?.addEventListener('click', () => {
 if (banner.style.display === 'none') {
 banner.style.display = 'block';
-// Foca no banner e remove o foco do botão flutuante
-document.getElementById('consent-title').focus(); 
+document.getElementById('consent-title').focus();
 }
 });
+if (localStorage.getItem(STORAGE_KEY)) {
+updateGTagConsent(consentState.analytics);
+renderGoogleMaps(consentState.functional);
+}
 });

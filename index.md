@@ -103,16 +103,10 @@ layout: default
   <article class="card location-map-card" data-cta="localizacao-mapa-cit">
     <p class="location-title">Mapa do CIT - Centro de Inovação e Tecnologia</p>
     <p>Av. Nova Iorque, 48-188 - Aeroporto, Boa Vista - RR, 69310-010.</p>
-    <div class="location-map-frame-wrap">
-      <iframe
-        class="location-map-frame"
-        title="Mapa do CIT - Centro de Inovação e Tecnologia"
-        aria-label="Mapa interativo do CIT em Boa Vista"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Av.+Nova+Iorque,+48-188+-+Aeroporto,+Boa+Vista+-+RR,+69310-010&output=embed"
-        allowfullscreen>
-      </iframe>
+    <div id="map-placeholder-parent" class="location-map-frame-wrap">
+      <div class="map-placeholder-pending">
+        <p>Ative as funcionalidades de localização no banner de privacidade para ver o mapa interativo.</p>
+      </div>
     </div>
     <p class="microcopy">Se o mapa embutido nao carregar, use os links abaixo.</p>
     <div class="link-stack">
