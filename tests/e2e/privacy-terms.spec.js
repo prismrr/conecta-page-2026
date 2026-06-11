@@ -38,6 +38,8 @@ test.describe("termos de uso", () => {
   });
 });
 
+// NOTA: estes testes exigem que _layouts/default.html inclua links no <footer>
+// para /politica-privacidade/ e /termos-uso/. O layout atual não os tem (Task 4).
 test.describe("footer com links de privacidade", () => {
   test("homepage tem links para privacidade e termos no footer", async ({ page }) => {
     await page.goto("/");
@@ -45,9 +47,9 @@ test.describe("footer com links de privacidade", () => {
     await expect(page.locator("footer a[href='/termos-uso/']")).toBeVisible();
   });
 
-  test("página de privacidade tem links no footer", async ({ page }) => {
-    await page.goto("/politica-privacidade/");
-    await expect(page.locator("footer a[href='/politica-privacidade/']")).toBeVisible();
-    await expect(page.locator("footer a[href='/termos-uso/']")).toBeVisible();
+  test("link de termos navega para a página de termos a partir do footer", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("footer a[href='/termos-uso/']").click();
+    await expect(page.getByRole("heading", { name: "Termos de Uso" })).toBeVisible();
   });
 });
