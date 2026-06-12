@@ -51,7 +51,7 @@ layout: default
   <div class="section-head section-row">
     <div>
       <h2>Agenda</h2>
-      <p>Busca textual por horário, trilha, palestrante ou tema.</p>
+      <p>Busca textual por horário, trilha, palestrante ou tema.</p>      
     </div>
     <label class="search-wrap" for="agenda-search">
       <span class="visually-hidden">Buscar na agenda</span>
@@ -59,6 +59,7 @@ layout: default
     </label>
   </div>
 
+  <p class="status status-warning">Mantenha-se atualizado: nossa agenda é dinâmica.</p>
   <p id="agenda-status" class="status" aria-live="polite">Carregando agenda...</p>
   <div id="agenda-list" class="grid agenda-grid">
     {% assign sessions = site.agenda | sort: 'startTime' | sort: 'date' %}
