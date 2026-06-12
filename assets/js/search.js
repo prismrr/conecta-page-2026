@@ -81,7 +81,7 @@
           <p class="agenda-date">Data: ${utils.escapeHtml(displayDate)}</p>
           <p class="meta">${utils.escapeHtml(s.startTime)} - ${utils.escapeHtml(s.endTime)} • ${utils.escapeHtml(s.track)}</p>
           <h3>${utils.escapeHtml(s.title)}</h3>
-          <p>${utils.escapeHtml(s.speaker)} • ${utils.escapeHtml(s.room)}</p>
+          <p>${utils.escapeHtml(s.speaker)} • ${utils.escapeHtml(s.room)}${s.linkedin ? ` <a href="${utils.escapeHtml(s.linkedin)}" target="_blank" rel="noopener noreferrer" class="agenda-linkedin" aria-label="Perfil de ${utils.escapeHtml(s.speaker)} no LinkedIn">LinkedIn ↗</a>` : ""}</p>
         </article>
       `;
         }

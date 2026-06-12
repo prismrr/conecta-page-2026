@@ -12,7 +12,8 @@ layout: null
     "date": {{ s.date | jsonify }},
     "startTime": {{ s.startTime | jsonify }},
     "endTime": {{ s.endTime | jsonify }},
-    "room": {{ s.room | jsonify }}
+    "room": {{ s.room | jsonify }},
+    "linkedin": {{ s.linkedin | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]

@@ -68,7 +68,7 @@ layout: default
         <p class="agenda-date">Data: {{ s.date | date: "%d/%m/%Y" }}</p>
         <p class="meta">{{ s.startTime }} - {{ s.endTime }} • {{ s.track }}</p>
         <h3>{{ s.title }}</h3>
-        <p>{{ s.speaker }} • {{ s.room }}</p>
+        <p>{{ s.speaker }} • {{ s.room }}{% if s.linkedin and s.linkedin != '' %} <a href="{{ s.linkedin }}" target="_blank" rel="noopener noreferrer" class="agenda-linkedin" aria-label="Perfil do(a) palestrante {{ s.speaker }} no LinkedIn">LinkedIn ↗</a>{% endif %}</p>
       </article>
     {% endfor %}
   </div>
