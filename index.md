@@ -12,7 +12,7 @@ layout: default
 
   <div class="grid news-grid">
     <article class="card location-card">  
-        <p>Uma jornada de três meses de puro aprendizado e inovação. Promovido pelo <a class="location-title" href="https://prismrr.github.io/">grupo de pesquisa PRISM-RR</a>, o evento oferece um ciclo completo de palestras, minicursos e atividades práticas (hands-on). Mergulhe fundo nas áreas que estão moldando o futuro da tecnologia:</p>
+        <p>Uma jornada de três meses de puro aprendizado e inovação. Promovido pelo <a class="location-title" href="https://prismrr.github.io/" target="_blank" rel="noopener noreferrer">grupo de pesquisa PRISM-RR</a>, o evento oferece um ciclo completo de palestras, minicursos e atividades práticas (hands-on). Mergulhe fundo nas áreas que estão moldando o futuro da tecnologia:</p>
         <ul>
             <li>Sistemas Embarcados Inteligentes</li>
             <li>Sistemas Ciber-Físicos</li>
