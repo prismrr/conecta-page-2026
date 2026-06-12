@@ -8,7 +8,9 @@ module.exports = defineConfig({
     headless: true,
   },
   webServer: {
-    command: "npm run build:site && npx http-server _site -p 4173 -s",
+    command: process.env.CI
+      ? "ruby scripts/validate_agenda.rb && bundle exec jekyll build && npx http-server _site -p 4173 -s"
+      : "npm run build:site && npx http-server _site -p 4173 -s",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: true,
     timeout: 240_000,
