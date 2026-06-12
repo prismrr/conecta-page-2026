@@ -2,6 +2,10 @@ const { test, expect } = require("@playwright/test");
 
 test.describe("jornada principal", () => {
   test("fluxo principal de agenda, localizacao e inscricao", async ({ page }) => {
+    // Pre-grant consent so Google Maps renders on load (gated by LGPD-001 since 359cc0f)
+    await page.addInitScript(() => {
+      localStorage.setItem("user_privacy_consent", JSON.stringify({ analytics: true, functional: true }));
+    });
     await page.goto("/");
 
     await expect(page.getByRole("heading", { name: "Agenda" })).toBeVisible();
