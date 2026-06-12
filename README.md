@@ -127,3 +127,38 @@ Valide em produção:
 - Home carregando sem erros
 - `/healthz` retornando `ok`
 - Agenda, localização e CTA de inscrição funcionando
+
+---
+
+## 🏷️ Releases
+
+O projeto usa [`release-please`](https://github.com/googleapis/release-please) para versionamento semântico automático a partir de [Conventional Commits](https://www.conventionalcommits.org/).
+
+### Como funciona
+
+A cada push em `main`, o workflow `.github/workflows/release.yml` analisa os commits acumulados desde o último release e abre (ou atualiza) automaticamente um **Release PR** com:
+
+- `CHANGELOG.md` gerado
+- Título no formato `chore: release vX.Y.Z`
+
+**Para publicar um release, basta mergear o Release PR.** O workflow então:
+
+1. Cria a tag git `vX.Y.Z`
+2. Publica o GitHub Release com o changelog
+3. Compila o site e anexa `site-vX.Y.Z.zip` como asset do release
+
+### Versionamento semântico automático
+
+| Tipo de commit | Efeito na versão |
+|---|---|
+| `fix:` / `fix(scope):` | patch — `v1.0.0` → `v1.0.1` |
+| `feat:` / `feat(scope):` | minor — `v1.0.0` → `v1.1.0` |
+| `BREAKING CHANGE:` no rodapé | major — `v1.0.0` → `v2.0.0` |
+| `docs:`, `test:`, `chore:`, `refactor:` | sem bump de versão (aparecem no CHANGELOG) |
+
+### Arquivos de configuração
+
+| Arquivo | Função |
+|---|---|
+| `.release-please-config.json` | Tipo de release e caminho do CHANGELOG |
+| `.release-please-manifest.json` | Versão atual usada como baseline |
