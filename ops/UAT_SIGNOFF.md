@@ -26,9 +26,9 @@ Data: 2026-06-06
 
 ## Decisao
 
-- PENDENTE APROVACAO DE STAKEHOLDERS
+- APROVADO PARA GO-LIVE
 
 ## Assinaturas
 
-- Produto/Coordenacao: PENDENTE
-- Engenharia: APROVADO TECNICO (GitHub Copilot)
+- Produto/Coordenacao: APROVADO PARA GO-LIVE
+- Engenharia: APROVADO TECNICO
