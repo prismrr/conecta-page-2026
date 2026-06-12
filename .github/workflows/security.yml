@@ -22,6 +22,7 @@ jobs:
           path: ./
           base: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
           head: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.event.after }}
+          extra_args: --only-verified --exclude-paths=.trufflehogignore
 
   dependency-audit:
     runs-on: ubuntu-latest
