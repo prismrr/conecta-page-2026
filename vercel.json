@@ -3,6 +3,7 @@
   "outputDirectory": "_site",
   "installCommand": "bundle install",
   "framework": null,
+  "github": { "enabled": false },
   "headers": [
     {
       "source": "/(.*)",

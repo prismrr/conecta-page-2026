@@ -115,8 +115,13 @@ cat .vercel/project.json   # copie orgId e projectId
 | `VERCEL_ORG_ID` | `orgId` de `.vercel/project.json` |
 | `VERCEL_PROJECT_ID` | `projectId` de `.vercel/project.json` |
 
-**4. Desativar deploys automáticos da Vercel** para evitar double-deploy:
-no dashboard da Vercel → *Settings → Git → Ignored Build Step* → defina como `exit 0`.
+**4. Evitar double-deploy:** o GitHub Actions já controla quando o deploy ocorre (após o gate passar). Para impedir que a Vercel dispare um segundo deploy automático ao detectar o push no `main`, adicione o campo `github` ao `vercel.json`:
+
+```json
+"github": { "enabled": false }
+```
+
+Isso desativa a integração via GitHub App da Vercel, mantendo os deploys via CLI com token (`vercel --prod --token`) funcionando normalmente.
 
 ### Fluxo automático
 
