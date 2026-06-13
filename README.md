@@ -19,7 +19,7 @@ Alvos de qualidade: Lighthouse mobile ≥ 90, LCP ≤ 2,0 s, acessibilidade WCAG
 | Estilização | Tailwind CSS (via CDN) |
 | Testes unitários / integração | Vitest |
 | Testes E2E / acessibilidade | Playwright + axe-core |
-| Hospedagem | GitHub Pages |
+| Hospedagem | Vercel |
 | CI/CD | GitHub Actions |
 
 ---
@@ -92,19 +92,45 @@ O build falha imediatamente se qualquer campo estiver ausente ou com tipo invál
 
 ---
 
-## 🌐 Deploy (GitHub Pages)
+## 🌐 Deploy (Vercel)
 
 ### Configuração inicial (uma vez)
 
-Em *Settings > Pages* do repositório, defina **Source** como **GitHub Actions**.
+**1. Linkar o repositório ao projeto Vercel:**
+
+```bash
+npm install -g vercel
+vercel login
+vercel link   # escolha "Create a new project" e siga os prompts
+cat .vercel/project.json   # copie orgId e projectId
+```
+
+**2. Gerar um token de API** em *vercel.com/account/tokens* → nome sugerido: `github-actions-deploy`.
+
+**3. Adicionar três secrets no repositório GitHub** (*Settings → Secrets and variables → Actions*):
+
+| Secret | Valor |
+|---|---|
+| `VERCEL_TOKEN` | Token gerado no passo 2 |
+| `VERCEL_ORG_ID` | `orgId` de `.vercel/project.json` |
+| `VERCEL_PROJECT_ID` | `projectId` de `.vercel/project.json` |
+
+**4. Evitar double-deploy:** o GitHub Actions já controla quando o deploy ocorre (após o gate passar). Para impedir que a Vercel dispare um segundo deploy automático ao detectar o push no `main`, adicione o campo `github` ao `vercel.json`:
+
+```json
+"github": { "enabled": false }
+```
+
+Isso desativa a integração via GitHub App da Vercel, mantendo os deploys via CLI com token (`vercel --prod --token`) funcionando normalmente.
 
 ### Fluxo automático
 
 Push ou merge em `main` aciona `.github/workflows/deploy-production.yml`, que executa:
 
 1. `npm run go-live:ready` — gate técnico completo + validação de aceite formal de UAT
-2. Upload do artefato `_site/` via `actions/upload-pages-artifact`
-3. Publicação no GitHub Pages via `actions/deploy-pages`
+2. `npx vercel --prod` — aciona o build e deploy na Vercel (só ocorre se o gate passar)
+
+A Vercel executa o build com `ruby scripts/validate_agenda.rb && bundle exec jekyll build` (configurado em `vercel.json`) e serve o conteúdo de `_site/` com os headers de segurança definidos no mesmo arquivo.
 
 O deploy **não ocorre** se o gate falhar. Não há rollback automático — consulte `ops/ROLLBACK_PLAN.md` para o procedimento manual.
 
@@ -127,6 +153,7 @@ Valide em produção:
 - Home carregando sem erros
 - `/healthz` retornando `ok`
 - Agenda, localização e CTA de inscrição funcionando
+- Headers de segurança ativos: `curl -sI https://SEU-PROJETO.vercel.app/ | grep -i "x-frame\|content-security"`
 
 ---
 
