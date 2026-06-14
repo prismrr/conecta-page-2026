@@ -157,6 +157,44 @@ Valide em produção:
 
 ---
 
+## 📊 Telemetria (Google Analytics 4)
+
+A telemetria é ativada via `google_analytics_measurement_id` em `_config.yml`. Quando o campo está preenchido, o Jekyll injeta automaticamente a meta tag e o script assíncrono do GA4 no HTML gerado.
+
+### Conformidade LGPD — Consent Mode v2
+
+O script `assets/js/consent-init.js` é carregado de forma **síncrona e bloqueante** no `<head>` antes do GA4, definindo o estado de consentimento padrão como negado:
+
+```js
+gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+```
+
+O consentimento só é atualizado para `'granted'` quando o usuário aceita a coleta de dados no modal de privacidade (`_includes/cookie-consent.html`), via `gtag('consent', 'update', ...)` em `assets/js/cookie-manager.js`.
+
+### Eventos rastreados
+
+| Evento | Fonte | Dados |
+|---|---|---|
+| `app_boot` | `monitoring.js` | `status: "ok"` |
+| `nav_timing` | `monitoring.js` | `ttfb`, `domContentLoaded` |
+| `web_vitals` | `monitoring.js` | `metric` (LCP / CLS / FCP), `value` |
+| `js_error` | `monitoring.js` | `message`, `source`, `line`, `column` |
+| `promise_rejection` | `monitoring.js` | `reason` |
+
+### Alterar o Measurement ID
+
+Edite `_config.yml`:
+
+```yaml
+google_analytics_measurement_id: "G-XXXXXXXXXX"
+```
+
+### Validar em produção
+
+Acesse o site com `?debug_mode=1` na URL e vá em **Google Analytics → Administrador → DebugView** para confirmar os eventos chegando em tempo real.
+
+---
+
 ## 🏷️ Releases
 
 O projeto usa [`release-please`](https://github.com/googleapis/release-please) para versionamento semântico automático a partir de [Conventional Commits](https://www.conventionalcommits.org/).
