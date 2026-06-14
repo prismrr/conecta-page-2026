@@ -12,7 +12,7 @@ front_matter_errors = []
 seen_ids = {}
 
 Dir.glob(File.join(AGENDA_DIR, "*.md")).sort.each do |path|
-  content = File.read(path)
+  content = File.read(path, encoding: "utf-8")
   match = content.match(/\A---\s*\n(.*?)\n---\s*\n/m)
 
   if match.nil?
