@@ -43,8 +43,6 @@ jobs:
   deploy:
     needs: build-and-verify
     runs-on: ubuntu-latest
-    environment:
-      name: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
