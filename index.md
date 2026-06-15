@@ -26,7 +26,7 @@ layout: default
   <p class="lead">Consulte notícias, encontre palestras rapidamente e acesse a inscrição oficial em poucos cliques.</p>
   <div class="hero-actions">
     <a href="#agenda" class="btn-primary">Ver agenda</a>
-    <a href="https://plataforma-externa.com/inscricao" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Abrir inscricao oficial em nova aba" data-cta="hero-inscricao">Ir para inscrição</a>
+    <a href="https://forms.gle/zmcwnhHeENqJPR74A" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Abrir inscricao oficial em nova aba" data-cta="hero-inscricao">Ir para inscrição</a>
   </div>
 </section>
 
@@ -126,7 +126,7 @@ layout: default
     <p class="location-title">Garanta sua vaga no PRISM Conecta 2026</p>
     <p>O processo de inscrição ocorre em plataforma externa homologada pela organização do evento.</p>
     <div class="hero-actions">
-      <a href="https://plataforma-externa.com/inscricao" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Abrir inscricao oficial em nova aba" data-cta="secao-inscricao-principal">Abrir inscrição ofícial</a>
+      <a href="https://forms.gle/zmcwnhHeENqJPR74A" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Abrir inscricao oficial em nova aba" data-cta="secao-inscricao-principal">Abrir inscrição ofícial</a>
       <!-- <a href="https://plataforma-externa.com/inscricao" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Abrir link direto de contingencia para inscricao" data-cta="secao-inscricao-contingencia">Usar link direto de contingencia</a> -->
     </div>
     <!-- <p class="microcopy">Caso o botao principal nao funcione na sua rede, use o link direto de contingencia acima.</p> -->
