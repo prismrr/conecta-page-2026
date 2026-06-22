@@ -19,14 +19,41 @@ layout: default
             <li>Verificação e Testes Automatizados</li>
             <li>Sistemas de Decisão em Engenharia Aplicada</li>
         </ul>
-
     </article>
   </div>
-  
+
   <p class="lead">Consulte notícias, encontre palestras rapidamente e acesse a inscrição oficial em poucos cliques.</p>
   <div class="hero-actions">
     <a href="#agenda" class="btn-primary">Ver agenda</a>
     <a href="https://forms.gle/zmcwnhHeENqJPR74A" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="Abrir inscricao oficial em nova aba" data-cta="hero-inscricao">Ir para inscrição</a>
+  </div>
+  
+  <br>
+
+  <div class="grid news-grid">
+    <article class="card location-card">
+      <p class="location-title">Estrutura dos Encontros</p>
+      <p>Os encontros serão divididos em dois eixos principais:</p>
+
+      <p><strong>Eixo 1 – Palestras e Networking</strong></p>
+      <p>Atividades voltadas à disseminação de conhecimento, discussão de tendências e articulação externa, incluindo:</p>
+      <ul>
+        <li>Palestras com convidados externos (universidades, centros de pesquisa, indústria);</li>
+        <li>Apresentação de experiências em projetos de PD&amp;I;</li>
+        <li>Sessões abertas para debate e troca de ideias;</li>
+        <li>Divulgação de oportunidades de cooperação e pesquisa.</li>
+      </ul>
+
+      <p><strong>Eixo 2 – Formação e Nivelamento Técnico</strong></p>
+      <p>Atividades práticas voltadas ao fortalecimento e disseminação de informação, tais como:</p>
+      <ul>
+        <li>Git e GitHub: controle de versão, fluxo de trabalho colaborativo e boas práticas;</li>
+        <li>Escrita de Artigos com LaTeX: estrutura de artigos científicos, templates e referências;</li>
+        <li>Gerência de Projetos: conceitos básicos, organização de tarefas, uso de metodologias ágeis;</li>
+        <li>Sistemas Embarcados: fundamentos e práticas para nivelamento;</li>
+        <li>Verificação e Testes Automatizados em C: uso de ferramentas, introduzindo a conceitos de verificação formal e análise automática.</li>
+      </ul>
+    </article>
   </div>
 </section>
 
